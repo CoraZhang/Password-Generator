@@ -9,6 +9,7 @@
 * If the choice of user does not meet requirements, it will alert messages asking for reconsideration
 * The code will generate password and write it to the box of webpage each time when clicking the button
 * The length of password should be at least 8 characters and no more than 128 characters, or it will send an error message
+* After generating password and writing to the box, the old password will be cleared
 
 ## User Story
 
