@@ -1,6 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
+var copyBtn = document.querySelector("#copyToclick");
 //Boolean variables to ensure user choose at least one type
 var IncludeLowerCase = false;
 var IncludeUpperCase = false;
@@ -9,6 +9,7 @@ var IncludeSpecialChar = false;
 var IsValid = false;
 var MyChosenLength = 0;
 var ArrPassword = [];
+var savePassword = [];
 
 // included letters, numbers and char
 var lowerCase = "abcdefghijklmnopqrstuvwxyz";
@@ -27,13 +28,36 @@ function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
     passwordText.textContent = ArrPassword;
+    savePassword = passwordText.textContent;
     ArrPassword = [];
     //clear previous password
 }
 
+function copyPassword() {
+
+    //var copyText = document.getElementById("copy-btn");
+    var copyText = savePassword;
+    //copyText.select();
+    //copyText.setSelectionRange(0, 99999);
+    console.log(copyText);
+    var passwordDisplay = document.getElementById("password");
+    passwordDisplay.select();
+    document.execCommand("copy");
+    alert("Copied the text: " + copyText);
+    var tooltip = document.getElementById("myTooltip");
+    //tooltip.innerHTML = "Copied: " + copyText;
+}
+
+function outFunc() {
+    var copyText = savePassword;
+    var tooltip = document.getElementById("myTooltip");
+    tooltip.innerHTML = "Copied";
+    //tooltip.innerHTML = "";
+
+}
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
+//generateBtn.addEventListener("click", copyPassword);
 // generate password function
 function generatePassword() {
 
