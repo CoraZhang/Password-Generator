@@ -3,7 +3,7 @@
 
 
 ## What is done
-Deployed at : 
+Deployed at : https://corazhang.github.io/Password-Generator/
 * Users are able to choose if they want to include numbers, lowercase, uppercase or special char by propts
 * At least one type should be choosen
 * If the choice of user does not meet requirements, it will alert messages asking for reconsideration
