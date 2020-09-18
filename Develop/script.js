@@ -27,6 +27,8 @@ function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
     passwordText.textContent = ArrPassword;
+    ArrPassword = [];
+    //clear previous password
 }
 
 // Add event listener to generate button
@@ -37,31 +39,39 @@ function generatePassword() {
 
     UserChoice(); //PasswordTypeCheck();
     // generate random password
-    for (var i = 0; ArrPassword.length < MyChosenLength - 1; i++) {
+    if (IsValid) {
+        for (var i = 0; ArrPassword.length < MyChosenLength; i++) {
+            // if the length of password array is less than the chosen length, continue to add new random chars
+            // if the length is equal or larger, break the loop 
+            if (IncludeNumbers && ArrPassword.length < MyChosenLength) {
+                var random1 = Math.floor(Math.random() * arrNumbers.length);
+                ArrPassword += arrNumbers[random1];
 
-        if (IncludeNumbers) {
-            var random1 = Math.floor(Math.random() * arrNumbers.length);
-            ArrPassword += arrNumbers[random1];
-        }
-        if (IncludeLowerCase) {
-            var random2 = Math.floor(Math.random() * arrLowerCase.length);
-            ArrPassword += arrLowerCase[random2];
-        }
-        if (IncludeUpperCase) {
-            var random3 = Math.floor(Math.random() * arrUpperCase.length);
-            ArrPassword += arrUpperCase[random3];
-        }
-        if (IncludeSpecialChar) {
-            var random4 = Math.floor(Math.random() * arrSpecialChar.length);
-            ArrPassword += arrSpecialChar[random4];
-        }
+            }
+            if (IncludeLowerCase && ArrPassword.length < MyChosenLength) {
+                var random2 = Math.floor(Math.random() * arrLowerCase.length);
+                ArrPassword += arrLowerCase[random2];
 
+            }
+            if (IncludeUpperCase && ArrPassword.length < MyChosenLength) {
+                var random3 = Math.floor(Math.random() * arrUpperCase.length);
+                ArrPassword += arrUpperCase[random3];
+
+            }
+            if (IncludeSpecialChar && ArrPassword.length < MyChosenLength) {
+                var random4 = Math.floor(Math.random() * arrSpecialChar.length);
+                ArrPassword += arrSpecialChar[random4];
+            }
+
+        }
+    } else {
+        alert("The password is not valid");
     }
     //return ArrPassword;
 } //while (IsValid) {
 //}
 
-
+// To check if the password is valid
 function PasswordTypeCheck() {
     if (!IncludeUpperCase && !IncludeLowerCase && !IncludeNumbers && !IncludeSpecialChar) {
         alert("The input type should include at least one character type, please try again!");
@@ -108,6 +118,4 @@ function UserChoice() {
         PasswordTypeCheck(); // Check if the password fulfill the requirements
 
     }
-
-
 }
