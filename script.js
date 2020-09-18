@@ -35,10 +35,7 @@ function writePassword() {
 
 function copyPassword() {
 
-    //var copyText = document.getElementById("copy-btn");
     var copyText = savePassword;
-    //copyText.select();
-    //copyText.setSelectionRange(0, 99999);
     console.log(copyText);
     var passwordDisplay = document.getElementById("password");
     passwordDisplay.select();
@@ -49,19 +46,17 @@ function copyPassword() {
 }
 
 function outFunc() {
-    var copyText = savePassword;
+    //var copyText = savePassword;
     var tooltip = document.getElementById("myTooltip");
     tooltip.innerHTML = "Copied";
-    //tooltip.innerHTML = "";
-
 }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-//generateBtn.addEventListener("click", copyPassword);
+
 // generate password function
 function generatePassword() {
-
-    UserChoice(); //PasswordTypeCheck();
+    // Ask for users' choice
+    UserChoice();
     // generate random password
     if (IsValid) {
         for (var i = 0; ArrPassword.length < MyChosenLength; i++) {
@@ -70,30 +65,24 @@ function generatePassword() {
             if (IncludeNumbers && ArrPassword.length < MyChosenLength) {
                 var random1 = Math.floor(Math.random() * arrNumbers.length);
                 ArrPassword += arrNumbers[random1];
-
             }
             if (IncludeLowerCase && ArrPassword.length < MyChosenLength) {
                 var random2 = Math.floor(Math.random() * arrLowerCase.length);
                 ArrPassword += arrLowerCase[random2];
-
             }
             if (IncludeUpperCase && ArrPassword.length < MyChosenLength) {
                 var random3 = Math.floor(Math.random() * arrUpperCase.length);
                 ArrPassword += arrUpperCase[random3];
-
             }
             if (IncludeSpecialChar && ArrPassword.length < MyChosenLength) {
                 var random4 = Math.floor(Math.random() * arrSpecialChar.length);
                 ArrPassword += arrSpecialChar[random4];
             }
-
         }
     } else {
         alert("The password is not valid");
     }
-    //return ArrPassword;
-} //while (IsValid) {
-//}
+}
 
 // To check if the password is valid
 function PasswordTypeCheck() {
@@ -117,29 +106,22 @@ function UserChoice() {
         MyChosenLength = lengthChoice;
         IncludeNumbers = confirm("Do you want to include numbers in your password? ");
         if (IncludeNumbers) {
-            //AddNumbers;
             console.log("User wants numbers");
-
         }
 
         IncludeLowerCase = confirm("Do you want to include lower cases in your password?");
         if (IncludeLowerCase) {
-            //AddLowerCase();
             console.log("User wants lower case");
-
         }
         IncludeUpperCase = confirm("Do you want to include upper cases in your password?");
         if (IncludeUpperCase) {
-            //AddUpperCase();
             console.log("User wants upper case");
-
         }
         IncludeSpecialChar = confirm("Do you want to include special char in your password?")
         if (IncludeSpecialChar) {
-            //AddSpecialChar();
             console.log("User wants symbols");
         }
-        PasswordTypeCheck(); // Check if the password fulfill the requirements
-
+        PasswordTypeCheck();
+        // Check if the password fulfill the requirements
     }
 }
