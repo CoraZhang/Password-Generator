@@ -99,36 +99,38 @@ function PasswordTypeCheck() {
 function UserChoice() {
     var lengthChoice = prompt("Please choose the length of the password: ");
     //console.log(typeof lengthChoice);
-    if (isNaN(lengthChoice) === true) {
-        alert("Please enter an integer");
-        UserChoice();
-        IsValid = false;
+    if (isNaN(lengthChoice) !== true) {
 
-    }
-    if (lengthChoice < 8 || lengthChoice > 128) {
-        alert("The password must have at least 8 characters and no more than 128 characters");
-        IsValid = false;
-        UserChoice();
+        if (lengthChoice < 8 || lengthChoice > 128) {
+            alert("The password must have at least 8 characters and no more than 128 characters");
+            IsValid = false;
+            UserChoice();
+        } else {
+            MyChosenLength = lengthChoice;
+            IncludeNumbers = confirm("Do you want to include numbers in your password? ");
+            if (IncludeNumbers) {
+                console.log("User wants numbers");
+            }
+
+            IncludeLowerCase = confirm("Do you want to include lower cases in your password?");
+            if (IncludeLowerCase) {
+                console.log("User wants lower case");
+            }
+            IncludeUpperCase = confirm("Do you want to include upper cases in your password?");
+            if (IncludeUpperCase) {
+                console.log("User wants upper case");
+            }
+            IncludeSpecialChar = confirm("Do you want to include special char in your password?")
+            if (IncludeSpecialChar) {
+                console.log("User wants symbols");
+            }
+            PasswordTypeCheck();
+            // Check if the password fulfill the requirements
+        }
     } else {
-        MyChosenLength = lengthChoice;
-        IncludeNumbers = confirm("Do you want to include numbers in your password? ");
-        if (IncludeNumbers) {
-            console.log("User wants numbers");
-        }
-
-        IncludeLowerCase = confirm("Do you want to include lower cases in your password?");
-        if (IncludeLowerCase) {
-            console.log("User wants lower case");
-        }
-        IncludeUpperCase = confirm("Do you want to include upper cases in your password?");
-        if (IncludeUpperCase) {
-            console.log("User wants upper case");
-        }
-        IncludeSpecialChar = confirm("Do you want to include special char in your password?")
-        if (IncludeSpecialChar) {
-            console.log("User wants symbols");
-        }
-        PasswordTypeCheck();
-        // Check if the password fulfill the requirements
+        alert("Please enter an integer");
+        IsValid = false;
+        console.log("The password type choice is not valid");
+        UserChoice();
     }
 }
