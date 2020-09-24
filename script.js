@@ -98,6 +98,11 @@ function PasswordTypeCheck() {
 
 function UserChoice() {
     var lengthChoice = prompt("Please choose the length of the password: ");
+    if (!Number.isInteger(lengthChoice)) {
+        alert("Please enter an integer");
+        UserChoice();
+        IsValid = false;
+    }
     if (lengthChoice < 8 || lengthChoice > 128) {
         alert("The password must have at least 8 characters and no more than 128 characters");
         IsValid = false;
